@@ -3,13 +3,18 @@ const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const geocoding = new require('reverse-geocoding-google');
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 var MongoClient = require('mongodb').MongoClient;
 var url = process.env.MONGO_URI;
 
 const pipeline = [
   {$match: {'operationType': 'insert'}}
 ];
-
 
 function getColor(){
   let colors = ['red','yellow','green','blue']
