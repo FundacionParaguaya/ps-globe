@@ -1,6 +1,7 @@
 const app = require('express')()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
+io.set('origins', '*:*');
 const geocoding = new require('reverse-geocoding-google');
 
 app.use(function(req, res, next) {
