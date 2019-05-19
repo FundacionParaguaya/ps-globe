@@ -15,7 +15,7 @@ const App = ({ port }) => {
   const [focus, setFocus] = useState(undefined)
   const socket = useMemo(
     () => {
-      const s = openSocket(`http://localhost:${port}`)
+      const s = openSocket(`https://ps-globe-backend.herokuapp.com`)
       console.log(s)
       return s
     },
@@ -116,7 +116,7 @@ const App = ({ port }) => {
 }
 
 App.defaultProps = {
-  port: '8000'
+  port: '80'
 }
 
 export default App
