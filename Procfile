@@ -1,1 +1,1 @@
-web: bin/proximo node server.js
+web: npm run start
