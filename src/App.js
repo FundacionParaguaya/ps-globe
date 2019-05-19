@@ -15,7 +15,7 @@ const App = ({ port }) => {
   const [focus, setFocus] = useState(undefined)
   const socket = useMemo(
     () => {
-      const s = openSocket(`ps-globe-backend.us-east-2.elasticbeanstalk.com`)
+      const s = openSocket(`https://ps-globe-backend.herokuapp.com`)
       console.log(s)
       return s
     },
