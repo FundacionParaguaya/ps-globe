@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import ReactGlobe from 'react-globe'
 import logo from './logo2.png'
 import openSocket from 'socket.io-client'
+import { numericLiteral, tsConstructSignatureDeclaration } from '@babel/types';
 
 function getTooltipContent(marker) {
   return `City: ${marker.city}`
@@ -15,6 +16,7 @@ const App = ({ port }) => {
   const socket = useMemo(
     () => {
       const s = openSocket(`http://localhost:${port}`)
+      console.log(s)
       return s
     },
     [port]
@@ -22,7 +24,8 @@ const App = ({ port }) => {
   useEffect(
     () => {
       socket.on('msg', msg => {
-        console.log(msg.city)
+        console.log(msg)
+        // console.log(msg.city)
         setFocus(msg.coordinates)
         setTimeout(() => {
           setMarkers(prevState => [...prevState, msg])
