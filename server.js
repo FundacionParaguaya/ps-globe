@@ -46,7 +46,12 @@ function generateFamilyObj(document) {
   })
 }
 
-MongoClient.connect(url, function(err, db) {
+MongoClient.connect(url, {
+  useNewUrlParser: true,
+  keepAlive: true,
+ connectTimeoutMS: 60000,    
+ socketTimeoutMS: 60000, 
+}, function(err, db) {
   if (err) throw err;
 
   db = db.db("povstop_final");
@@ -59,6 +64,7 @@ MongoClient.connect(url, function(err, db) {
   });
 });
 
+app.listen()
 
 http.listen(process.env.PORT, function() {
   console.log('listening on PORT '+ process.env.PORT)
